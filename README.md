@@ -1,260 +1,188 @@
-## 🎬 CineScore – Sistema de Recomendação de Filmes e Séries
+<div align="center">
 
-Aplicação web que oferece recomendações personalizadas de filmes e séries a partir das preferências e interações dos usuários (likes, favoritos e feedbacks), ajudando a reduzir o tempo gasto escolhendo o que assistir e contribuindo para diminuir a taxa de churn em plataformas de streaming.
+# CineScore
 
----
+**Descubra filmes com estilo — tendências, busca e catálogo com filtros.**
 
-## 📑 Sumário
-- [🎯 Visão Geral do Produto](#-visão-geral-do-produto)
-- [👥 Público-Alvo e Principais Casos de Uso](#-público-alvo-e-principais-casos-de-uso)
-- [🏗️ Arquitetura e Tecnologias](#️-arquitetura-e-tecnologias)
-- [📂 Estrutura do Repositório](#-estrutura-do-repositório)
-- [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
-  - [🧰 Pré-requisitos](#-pré-requisitos)
-  - [☕ Backend (Spring Boot)](#-backend-spring-boot)
-  - [💻 Frontend (Aplicação Web)](#-frontend-aplicação-web)
-- [🧩 Funcionalidades Principais](#-funcionalidades-principais)
-  - [👤 Gerenciar Usuários](#-gerenciar-usuários)
-  - [⭐ Gerenciar Favoritos](#-gerenciar-favoritos)
-  - [🤖 Gerenciar Recomendações](#-gerenciar-recomendações)
-  - [💬 Gerenciar Feedback](#-gerenciar-feedback)
-- [🗄️ Modelo de Dados e Documentação](#️-modelo-de-dados-e-documentação)
-- [📈 Histórico de Versões (Release Notes)](#-histórico-de-versões-release-notes)
-- [👨‍💻 Equipe](#-equipe)
-- [👩‍🏫 Docentes Orientadores](#-docentes-orientadores)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TMDb](https://img.shields.io/badge/API-TMDb-01D277?style=for-the-badge&logo=themoviedatabase&logoColor=white)](https://www.themoviedb.org/)
+[![License](https://img.shields.io/badge/Licença-CC--BY--4.0-525252?style=for-the-badge)](https://creativecommons.org/licenses/by/4.0/)
+
+*Projeto acadêmico voltado a recomendação e experiência em streaming — interface moderna consumindo dados reais do cinema.*
+
+&#127871;&#127902;&#11088;&#127909;
+
+[Como rodar](#como-rodar) · [Stack](#stack-tecnológica) · [Estrutura](#estrutura-do-repositório) · [Documentação](#documentação-e-visão-de-produto) · [Equipe](#equipe)
+
+</div>
 
 ---
 
-## 🎯 Visão Geral do Produto
+## &#127909; Sobre o projeto
 
-O CineScore é uma aplicação web focada em:
+O **CineScore** é uma aplicação web para explorar filmes: **destaques da semana**, **populares**, **busca por título** e uma página dedicada de **catálogo** com **gênero**, **classificação indicativa** e **paginação**. A experiência inclui **cards**, **banner hero** e **modal de detalhes**, com textos e metadados em **português (pt-BR)** quando disponíveis na API.
 
-- **Coletar preferências dos usuários** (gênero, plataforma de streaming, classificação indicativa, etc.).
-- **Analisar interações** (likes, favoritos, feedbacks) para identificar padrões de consumo.
-- **Recomendar títulos de forma personalizada**, reduzindo o tempo de busca por filmes/séries.
-- **Melhorar a experiência de entretenimento**, apoiando a retenção de usuários em plataformas de streaming.
-
-A solução se inspira em plataformas como IMDb, Rotten Tomatoes e Metacritic, mas com foco em recomendações personalizadas a partir do perfil do usuário e de suas ações dentro do sistema.
+A visão mais ampla do produto — usuários, favoritos, feedback e motor de recomendação — está descrita na pasta **`docs/`**, junto com modelagem e processos de negócio.
 
 ---
 
-## 👥 Público-Alvo e Principais Casos de Uso
+## &#127871; Funcionalidades (front-end atual)
 
-- **Usuário geral de plataformas de streaming**
-  - Quer decidir rapidamente o que assistir sem ficar minutos rolando catálogos.
-  - Deseja receber recomendações alinhadas ao próprio gosto.
-
-- **Administrador**
-  - Responsável por manter o catálogo de títulos atualizado.
-  - Pode cadastrar/atualizar filmes e séries que alimentarão o mecanismo de recomendação.
-
-Principais cenários:
-- Descobrir novos filmes e séries personalizados para o usuário.
-- Salvar títulos como favoritos para consultas futuras.
-- Registrar feedbacks (comentários, likes e dislikes).
-- Buscar títulos por filtros e palavras‐chave.
+- &#127909; **Início** — tendências da semana, populares, busca rápida e modal do filme
+- &#127902; **Filmes** — descoberta com filtros (gênero, certificação), busca e paginação
+- &#127912; **UI** — layout responsivo, tema dedicado, cabeçalho e rodapé
+- &#128279; **Integração** — [The Movie Database (TMDb)](https://www.themoviedb.org/) via variável de ambiente
 
 ---
 
-## 🏗️ Arquitetura e Tecnologias
+## &#128187; Stack tecnológica
 
-- **Backend**
-  - Java 21
-  - Spring Boot (REST API, regras de negócio)
-  - Spring Data JPA
-  - Banco relacional (PostgreSQL)
-  - Ferramentas de gestão de dependência (Maven)
+| Camada | Tecnologias |
+|--------|-------------|
+| **Interface** | [React 18](https://react.dev/), [React Router 6](https://reactrouter.com/) |
+| **Build** | [Vite 5](https://vitejs.dev/), `@vitejs/plugin-react` |
+| **Dados** | REST API do TMDb (`fetch`, endpoints v3) |
+| **Estilo** | CSS (`theme.css` e estilos por componente) |
 
-- **Frontend**
-  - HTML, CSS e JavaScript puros
-  - Estrutura organizada em `assets/css`, `assets/js` e `assets/img`
-
-- **Outros**
-  - IDEs sugeridas: Eclipse/IntelliJ para backend, VS Code para frontend
-  - pgAdmin para administração do banco PostgreSQL
+> A documentação em `docs/` também descreve **Spring Boot**, **PostgreSQL** e os processos de negócio — visão completa da solução acadêmica.
 
 ---
 
-## 📂 Estrutura do Repositório
+## &#128193; Estrutura do repositório
 
 ```text
 .
-├── docs/                     # Documentação textual, diagramas, apresentações e vídeo
-│   ├── interface.md          # Detalhamento da interface do sistema
-│   ├── processo_1.md         # Processo 1 – Gerenciar Usuários
-│   ├── processo_2.md         # Processo 2 – Gerenciar Favoritos
-│   ├── processo_3.md         # Processo 3 – Gerenciar Recomendações
-│   ├── processo_4.md         # Processo 4 – Gerenciar Feedback
-│   ├── solution-design.md    # Modelo de dados e tecnologias
-│   ├── performance-indicators.md
-│   ├── presentations/        # Slides da apresentação final
-│   └── video/                # Vídeo de apresentação
-│
+├── docs/                 # Processos, interface, modelo de dados, indicadores
 ├── src/
-│   ├── back/                 # Backend (projeto Spring Boot)
-│   │   ├── cinescore/
-│   │   │   ├── pom.xml
-│   │   │   └── src/main/java/com/cinescore/...
-│   │   └── README.md         # Informações acadêmicas e contexto do projeto
-│   └── front/                # Frontend (aplicação web)
-│       ├── assets/css/       # Estilos da aplicação
-│       ├── assets/js/        # Scripts (login, favoritos, recomendações etc.)
-│       └── assets/img/       # Imagens e recursos visuais
-│
-├── README.md                 # Visão geral do projeto (este arquivo)
-└── CITATION.cff              # Metadados de citação científica do projeto
+│   ├── front/            # React + Vite
+│   │   ├── src/
+│   │   │   ├── api/      # Cliente TMDb (trending, popular, busca, discover…)
+│   │   │   ├── components/
+│   │   │   ├── pages/    # Home, Movies
+│   │   │   ├── assets/css/
+│   │   │   ├── App.jsx
+│   │   │   └── main.jsx
+│   │   ├── index.html
+│   │   ├── vite.config.js
+│   │   ├── package.json
+│   │   └── .env.example
+│   └── README.md
+├── CITATION.cff
+└── README.md
 ```
 
-Para detalhes adicionais de código-fonte:
-- `src/README.md` – ponteiro para código de front-end e back-end.
-- Documentos técnicos e de negócio em `docs/`.
-
 ---
 
-## 🚀 Como Executar o Projeto
+## &#128640; Como rodar
 
-### 🧰 Pré-requisitos
+### Pré-requisitos
 
-- Java 21 instalado.
-- Maven configurado (para o backend).
-- PostgreSQL instalado e em execução.
-- pgAdmin (opcional, para gerenciar o banco).
-- VS Code (ou outro editor) para servir o frontend.
+- [Node.js](https://nodejs.org/) (recomendado: LTS atual)
+- Conta e **chave de API** no [TMDb](https://www.themoviedb.org/settings/api)
 
-### ☕ Backend (Spring Boot)
+### Passos
 
-1. **Configurar o banco de dados**
-   - Crie um banco PostgreSQL (nome a sua escolha).
-   - Edite o arquivo `application.properties` do backend para apontar para seu banco, usuário e senha:
+1. **Entre na pasta do front-end**
 
-   ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/seu_banco_de_dados
-   spring.datasource.username=seu_usuario
-   spring.datasource.password=sua_senha
-   spring.datasource.driver-class-name=org.postgresql.Driver
-   spring.jpa.hibernate.ddl-auto=update
+   ```bash
+   cd src/front
    ```
 
-2. **Build e execução**
-   - Abra o projeto `src/back/cinescore` na sua IDE ou linha de comando.
-   - Via Maven:
+2. **Instale as dependências**
 
-   ```sh
-   mvn clean package
-   mvn spring-boot:run
+   ```bash
+   npm install
    ```
 
-   - Ou diretamente pela IDE, executando a classe principal `CinescoreApplication`.
+3. **Configure a API**
 
-3. **Verificar a API**
-   - Após subir o Spring Boot, os endpoints REST do CineScore ficarão disponíveis na porta configurada (por padrão, 8080).
+   Copie o exemplo e preencha sua chave:
 
-### 💻 Frontend (Aplicação Web)
+   ```bash
+   # Windows (PowerShell ou CMD)
+   copy .env.example .env
 
-1. Abra a pasta `src/front` no VS Code.
-2. Instale a extensão “Live Server” (ou similar).
-3. Clique com o botão direito em `index.html` e selecione “Open with Live Server”.
-4. Certifique-se de que o backend está rodando para que as chamadas da interface funcionem corretamente.
+   # macOS / Linux
+   cp .env.example .env
+   ```
 
----
+   No arquivo `.env`:
 
-## 🧩 Funcionalidades Principais
+   ```env
+   VITE_TMDB_API_KEY=sua_chave_aqui
+   ```
 
-### 👤 Gerenciar Usuários
+4. **Suba o servidor de desenvolvimento**
 
-- Cadastro de novos usuários.
-- Autenticação (login).
-- Configuração de conta (por exemplo, alteração de senha).
+   ```bash
+   npm run dev
+   ```
 
-### ⭐ Gerenciar Favoritos
+5. Abra o endereço indicado no terminal (geralmente `http://localhost:5173`).
 
-- Visualizar listas de filmes e séries.
-- Adicionar/remover títulos dos favoritos.
-- Visualizar detalhes de cada título.
+### Scripts úteis
 
-### 🤖 Gerenciar Recomendações
-
-- Exibição de listas de recomendações com base nas preferências e interações do usuário.
-- Otimização do tempo de busca por conteúdo relevante.
-
-### 💬 Gerenciar Feedback
-
-- Inserir comentários sobre títulos.
-- Registrar likes e dislikes.
-- Restringir feedbacks ofensivos conforme regras de negócio.
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento com hot reload |
+| `npm run build` | Build de produção em `dist/` |
+| `npm run preview` | Pré-visualização do build |
 
 ---
 
-## 🗄️ Modelo de Dados e Documentação
+## &#128218; Documentação e visão de produto
 
-A modelagem de dados e os detalhes de design da solução estão descritos em:
+| Documento | Conteúdo |
+|-----------|----------|
+| `docs/solution-design.md` | Modelo de dados e tecnologias |
+| `docs/interface.md` | Interface do sistema |
+| `docs/processo_1.md` … `processo_4.md` | Usuários, favoritos, recomendações, feedback |
+| `docs/performance-indicators.md` | Indicadores de desempenho |
+| `docs/diagramas.md` | Diagramas |
 
-- `docs/solution-design.md` – modelo relacional e tecnologias.
-- `docs/performance-indicators.md` – indicadores de desempenho dos processos.
-- `docs/interface.md` – visão detalhada da interface do sistema.
-- `docs/processo_1.md` a `docs/processo_4.md` – detalhamento de cada processo de negócio.
+### &#128200; Histórico de versões (resumo)
 
-Além disso, a pasta `docs/images` contém:
-- Diagramas de classes.
-- Modelo de dados (conceitual e relacional).
-- Capturas de tela das principais telas da aplicação.
+- **0.8.x** — Indicadores de desempenho e documentação associada
+- **0.7.x** — Processo 4: feedback (comentários, likes/dislikes)
+- **0.6.x** — Processo 3: recomendações
+- **0.5.x** — Processo 2: favoritos e listagens
+- **0.4.x** — Processo 1: usuários (login, cadastro, conta)
+- **0.3.x** — Modelo de dados
+- **0.2.x** — Modelagem de processos
+- **0.1.x** — Estrutura inicial da documentação
 
----
-
-## 📈 Histórico de Versões (Release Notes)
-
-Resumo das principais etapas de evolução do projeto (consolidado a partir da documentação):
-
-- **0.8.x – Indicadores de Desempenho**
-  - Definição e implementação dos indicadores de desempenho dos processos.
-  - Atualização das documentações associadas.
-
-- **0.7.x – Processo 4: Gerenciar Feedback**
-  - Implementação das funcionalidades de comentários e likes/dislikes.
-  - Atualização das documentações do processo de feedback.
-
-- **0.6.x – Processo 3: Gerenciar Recomendações**
-  - Implementação das listas de recomendações para filmes e séries.
-  - Detalhamento do processo de recomendações.
-
-- **0.5.x – Processo 2: Gerenciar Favoritos**
-  - Implementação da visualização de listas (filmes, séries, favoritos, detalhes).
-  - Modelagem do processo de favoritos.
-
-- **0.4.x – Processo 1: Gerenciar Usuários**
-  - Implementação de login, cadastro e configuração de conta.
-  - Modelagem do processo de usuários.
-
-- **0.3.x – Modelo de Dados**
-  - Definição e documentação do modelo de dados relacional.
-
-- **0.2.x – Modelagem de Processos de Negócio**
-  - Detalhamento dos processos de negócio principais do sistema.
-
-- **0.1.x – Estrutura Inicial**
-  - Criação da visão geral de negócio e estrutura básica da documentação.
-
-Para uma linha do tempo completa, consulte a seção “Histórico de Versões” na documentação original em `docs/README.md` (quando aplicável).
+*(Detalhes completos nos arquivos em `docs/`.)*
 
 ---
 
-## 👨‍💻 Equipe
+## &#128101; Equipe
 
-- Brenda Evers  
-- Isabella Luiza Dias dos Santos  
-- Islayder Jackson Ribeiro de Oliveira  
-- Leandro Alencar Pereira Clemente  
-- Lucas Valente Alves  
-- Victor Rafael de Neiva Machado  
-
----
-
-## 👩‍🏫 Docentes Orientadores
-
-- Aline Norberta de Brito  
-- Eveline Alonso Veloso  
-- Juliana Amaral Baroni de Carvalho  
+- Brenda Evers
+- Isabella Luiza Dias dos Santos
+- Islayder Jackson Ribeiro de Oliveira
+- Leandro Alencar Pereira Clemente
+- Lucas Valente Alves
+- Victor Rafael de Neiva Machado
 
 ---
 
-Para detalhes acadêmicos completos (introdução, justificativa, conclusão, referências e apêndices), consulte `src/back/README.md` e os demais arquivos da pasta `docs/`.
+## &#127891; Docentes orientadoras
+
+- Aline Norberta de Brito
+- Eveline Alonso Veloso
+- Juliana Amaral Baroni de Carvalho
+
+---
+
+## &#128172; Citação
+
+Ao referenciar o trabalho, use os metadados em [`CITATION.cff`](./CITATION.cff).
+
+---
+
+<div align="center">
+
+**Bom filme e bom código!** &#127871;
+
+</div>
