@@ -10,21 +10,21 @@ export default function HeroBanner() {
     <>
       <div className="banner">
         <div className="video-bg">
-          <video src="/assets/img/mulan.mp4" autoPlay muted loop playsInline />
+          <video src={`${import.meta.env.BASE_URL}assets/img/mulan.mp4`} autoPlay muted loop playsInline />
           <div className="overlay" />
         </div>
         <div className="content">
-          <img src="/assets/img/name.png" className="movieTitle" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/img/name.png`} className="movieTitle" alt="" />
         </div>
         <button type="button" className="play" onClick={openTrailer}>
-          <img src="/assets/img/play.png" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/img/play.png`} alt="" />
           Assistir trailer
         </button>
       </div>
 
       <div className={`trailer-overlay ${trailerOpen ? 'active' : ''}`}>
-        <video src="/assets/img/video.mp4" controls />
-        <img src="/assets/img/close.png" className="close" alt="Fechar" onClick={closeTrailer} role="presentation" />
+        <video src={`${import.meta.env.BASE_URL}assets/img/video.mp4`} controls />
+        <img src={`${import.meta.env.BASE_URL}assets/img/close.png`} className="close" alt="Fechar" onClick={closeTrailer} role="presentation" />
       </div>
     </>
   );

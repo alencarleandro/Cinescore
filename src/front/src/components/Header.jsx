@@ -12,7 +12,7 @@ export default function Header({
   return (
     <header className={headerClass}>
       <Link to="/" className="logo">
-        <img src="/assets/img/LogoCineScore.png" alt="CineScore" />
+        <img src={`${import.meta.env.BASE_URL}assets/img/LogoCineScore.png`} alt="CineScore" />
       </Link>
       <ul className="navigation" id="score">
         <li>
